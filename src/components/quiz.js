@@ -4,18 +4,20 @@ import { useState } from 'react';
 
 const Quiz = ({ setModal1, setModal2, getScore }) => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
-    const [score, setScore] = useState(1);
+    const [score, setScore] = useState(0);
     function handleAnswerOptionClick(status) {
         if (status) {
-            setScore(score + 1)
+            const newScore = score + 1
+            setScore(newScore)
+            alert(`New score: ${score} ${newScore}`)
         }
         if (currentQuestion + 1 < questions.length) {
             setCurrentQuestion(currentQuestion + 1)
         }
         else {
+            getScore(score)
             setModal1(false)
             setModal2(true)
-            getScore(score)
         }
     }
     return (
@@ -27,8 +29,8 @@ const Quiz = ({ setModal1, setModal2, getScore }) => {
                 <div className='question-text'>{questions[currentQuestion].questionText}</div>
             </div>
             <div className='answer-section'>
-                {questions[currentQuestion].answerOptions.map((answerOption) => (
-                    <button className='button' onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
+                {questions[currentQuestion].answerOptions.map((answerOption, index) => (
+                    <button key={index} className='button' onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
                 ))}
             </div>
         </div>
