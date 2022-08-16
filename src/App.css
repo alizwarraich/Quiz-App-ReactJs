@@ -1,0 +1,15 @@
+.App {
+  margin-top: 10rem;
+  text-align: center;
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.welcome {
+  background-color: #202741;
+  width: 600px;
+  height: 340px;
+  border-radius: 20px;
+  padding: 20px 0 20px 0;
+}
