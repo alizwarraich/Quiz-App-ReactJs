@@ -5,20 +5,18 @@ import { useState } from 'react';
 const Quiz = ({ setModal1, setModal2, getScore }) => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [score, setScore] = useState(0);
+    var newScore = 0;
     function handleAnswerOptionClick(status) {
         if (status) {
-            const newScore = score + 1
+            newScore = score + 1
             setScore(newScore)
-            alert(`New score: ${score} ${newScore}`)
         }
-        if (currentQuestion + 1 < questions.length) {
-            setCurrentQuestion(currentQuestion + 1)
-        }
-        else {
-            getScore(score)
-            setModal1(false)
-            setModal2(true)
-        }
+        currentQuestion + 1 < questions.length ?
+            setCurrentQuestion(currentQuestion + 1) : (function () {
+                getScore(newScore)
+                setModal1(false)
+                setModal2(true)
+            }())
     }
     return (
         <div className='grid'>
@@ -27,6 +25,7 @@ const Quiz = ({ setModal1, setModal2, getScore }) => {
                     <span>Question {currentQuestion + 1}</span>/{questions.length}
                 </div>
                 <div className='question-text'>{questions[currentQuestion].questionText}</div>
+                <div>Score: {score}</div>
             </div>
             <div className='answer-section'>
                 {questions[currentQuestion].answerOptions.map((answerOption, index) => (
