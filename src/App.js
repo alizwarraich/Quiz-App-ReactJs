@@ -9,6 +9,7 @@ function App() {
   const [modal1, setModal1] = useState(false);
   const [modal2, setModal2] = useState(false);
   const [score, getScore] = useState(0);
+  console.log(score);
   return (
     <div className="App">
       {
@@ -17,7 +18,6 @@ function App() {
           <Home setModal={setModal} setModal1={setModal1} />
         </div>
       }
-
       {
         modal1 &&
         <div className='welcome'>

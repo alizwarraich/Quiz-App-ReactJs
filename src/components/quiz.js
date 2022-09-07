@@ -5,15 +5,13 @@ import { useState } from 'react';
 const Quiz = ({ setModal1, setModal2, getScore }) => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [score, setScore] = useState(0);
-    var newScore = 0;
     function handleAnswerOptionClick(status) {
         if (status) {
-            newScore = score + 1
-            setScore(newScore)
+            setScore(score => score + 1)
         }
         currentQuestion + 1 < questions.length ?
             setCurrentQuestion(currentQuestion + 1) : (function () {
-                getScore(newScore)
+                getScore(score)
                 setModal1(false)
                 setModal2(true)
             }())
